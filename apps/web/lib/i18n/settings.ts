@@ -1,6 +1,6 @@
 import { supportedLangs } from "@karakeep/shared/langs";
 
-export const fallbackLng = "en";
+export const fallbackLng = "zh";
 export const languages = supportedLangs;
 export const defaultNS = "translation";
 export const cookieName = "i18next";

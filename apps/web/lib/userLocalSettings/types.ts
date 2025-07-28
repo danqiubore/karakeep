@@ -7,8 +7,12 @@ export type BookmarksLayoutTypes = z.infer<typeof zBookmarkGridLayout>;
 
 export const zUserLocalSettings = z.object({
   bookmarkGridLayout: zBookmarkGridLayout.optional().default("masonry"),
+<<<<<<< HEAD
   lang: z.string().optional().default("en"),
   gridColumns: z.number().min(1).max(6).optional().default(3),
+=======
+  lang: z.string().optional().default("zh"),
+>>>>>>> bab7efc9 (feat(i18n): 将默认语言从英文改为中文)
 });
 
 export type UserLocalSettings = z.infer<typeof zUserLocalSettings>;
