@@ -18,7 +18,7 @@ import * as Sharing from "expo-sharing";
 import useAppSettings from "@/lib/settings";
 import { api } from "@/lib/trpc";
 import { MenuView } from "@react-native-menu/menu";
-import { Ellipsis, Share2, Star } from "lucide-react-native";
+import { Ellipsis, ShareIcon, Star } from "lucide-react-native";
 
 import type { ZBookmark } from "@karakeep/shared/types/bookmarks";
 import {
@@ -181,7 +181,7 @@ function ActionBar({ bookmark }: { bookmark: ZBookmark }) {
           handleShare();
         }}
       >
-        <Share2 color="gray" />
+        <ShareIcon color="gray" />
       </Pressable>
 
       <MenuView
@@ -198,14 +198,16 @@ function ActionBar({ bookmark }: { bookmark: ZBookmark }) {
             router.push(`/dashboard/bookmarks/${bookmark.id}/manage_lists`);
           } else if (nativeEvent.event === "manage_tags") {
             router.push(`/dashboard/bookmarks/${bookmark.id}/manage_tags`);
+          } else if (nativeEvent.event === "edit") {
+            router.push(`/dashboard/bookmarks/${bookmark.id}/info`);
           }
         }}
         actions={[
           {
-            id: "archive",
-            title: bookmark.archived ? "Un-archive" : "Archive",
+            id: "edit",
+            title: "Edit",
             image: Platform.select({
-              ios: "folder",
+              ios: "pencil",
             }),
           },
           {
@@ -220,6 +222,13 @@ function ActionBar({ bookmark }: { bookmark: ZBookmark }) {
             title: "Manage Tags",
             image: Platform.select({
               ios: "tag",
+            }),
+          },
+          {
+            id: "archive",
+            title: bookmark.archived ? "Un-archive" : "Archive",
+            image: Platform.select({
+              ios: "folder",
             }),
           },
           {
